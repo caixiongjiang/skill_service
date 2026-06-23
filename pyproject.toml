@@ -1,0 +1,22 @@
+[project]
+name = "skill-service"
+version = "0.1.0"
+description = "Skill 技能管理服务（独立进程，独占 MySQL，对外暴露 REST API）"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.129.0",
+    "uvicorn>=0.41.0",
+    "sqlalchemy>=2.0.0",
+    "pyyaml>=6.0",
+    "loguru>=0.7.3",
+    "pymysql>=1.1.2",
+    "python-dotenv>=1.2.1",
+    "pydantic>=2.12.5",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[tool.uv.sources]
+skill-core = { path = "../skill_core", editable = true }
