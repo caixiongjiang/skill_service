@@ -78,10 +78,8 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     repo = MySQLSkillRepository(session_factory=session_factory)
     repo.ensure_tables()
 
-    builtin_dir = Path(__file__).resolve().parent.parent / "skill_core" / "skills"
-    # 也检查本地 skills 目录
-    if not builtin_dir.is_dir():
-        builtin_dir = Path(__file__).resolve().parent / "skills"
+    import skill_core as _sc
+    builtin_dir = Path(_sc.__file__).resolve().parent / "skills"
     if not builtin_dir.is_dir():
         builtin_dir = Path("./skills")
         builtin_dir.mkdir(exist_ok=True)

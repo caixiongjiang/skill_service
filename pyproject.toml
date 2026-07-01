@@ -12,6 +12,7 @@ dependencies = [
     "pymysql>=1.1.2",
     "python-dotenv>=1.2.1",
     "pydantic>=2.12.5",
+    "skill-core>=0.2.0",
 ]
 
 [[tool.uv.index]]
@@ -19,4 +20,4 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 
 [tool.uv.sources]
-skill-core = { path = "../skill_core", editable = true }
+skill-core = { path = "third_party/skill_core-0.2.0-py3-none-any.whl" }
