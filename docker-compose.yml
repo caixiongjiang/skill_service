@@ -1,0 +1,19 @@
+services:
+  # ==================== Skill Service (技能管理服务) ====================
+  skill-service:
+    build: .
+    container_name: skill-service
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env.production
+    networks:
+      - skill-network
+      - mysql_default
+
+networks:
+  skill-network:
+    driver: bridge
+  mysql_default:
+    external: true
