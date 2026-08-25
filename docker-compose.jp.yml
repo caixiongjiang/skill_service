@@ -1,0 +1,19 @@
+name: skill-jp
+
+services:
+  skill-service:
+    build: .
+    container_name: skill-service-jp
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    env_file:
+      - .env.jp
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - skill-jp-network
+
+networks:
+  skill-jp-network:
+    driver: bridge

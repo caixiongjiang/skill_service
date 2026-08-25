@@ -150,6 +150,7 @@ activemq-data/
 # Environments
 .env
 .env.production
+.env.jp
 .envrc
 .venv
 env/
