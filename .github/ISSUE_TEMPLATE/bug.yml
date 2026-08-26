@@ -1,0 +1,94 @@
+name: Bug
+description: 技能接口异常、数据错误或行为不符合预期
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量带上接口路径、状态码和响应摘要。若已确认是前端或 AKS 的问题，请改到对应仓库提。
+
+  - type: textarea
+    id: what
+    attributes:
+      label: 现象
+      description: 实际看到了什么
+      placeholder: 例如：GET /skills 返回 500，侧栏技能列表空白
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期
+      description: 应该怎样
+      placeholder: 例如：返回 200，并列出全部已启用技能
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及能力
+      options:
+        - 技能列表 / 详情
+        - 创建 / 编辑 / 删除
+        - 启用 / 停用
+        - descriptors 同步
+        - 健康检查 / 启动
+        - 其它
+    validations:
+      required: true
+
+  - type: input
+    id: endpoint
+    attributes:
+      label: 接口
+      description: METHOD + path，例如 `GET /skills/my-skill`
+      placeholder: GET /skills
+
+  - type: input
+    id: status
+    attributes:
+      label: HTTP 状态码
+      placeholder: 500
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据
+      description: 响应摘要、日志片段或截图
+      placeholder: |
+        响应：
+        日志：
+
+  - type: input
+    id: env
+    attributes:
+      label: 环境
+      description: 分支、部署环境、相关依赖版本
+      placeholder: 分支 main，本地 MySQL，端口 8001
+
+  - type: dropdown
+    id: repo
+    attributes:
+      label: 初步判断仓库
+      options:
+        - skill_service（本仓库）
+        - AI-site
+        - agentic_knowledge_system
+        - 尚未确认
+      default: 0
+    validations:
+      required: true

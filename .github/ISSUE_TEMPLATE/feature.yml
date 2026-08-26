@@ -1,0 +1,59 @@
+name: 功能需求
+description: 新增或增强技能管理能力
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        说清要解决的问题和不做什么。若改动主要在前端或 AKS，请改到对应仓库提。
+
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景
+      description: 为什么需要这个能力
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标
+      description: 做完之后应该能怎样
+    validations:
+      required: true
+
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: 不做什么
+      description: 明确排除的范围，避免范围蔓延
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及能力
+      options:
+        - 技能列表 / 详情
+        - 创建 / 编辑 / 删除
+        - 启用 / 停用
+        - descriptors 同步
+        - API / 鉴权 / 存储
+        - 其它
+    validations:
+      required: true
+
+  - type: dropdown
+    id: repo
+    attributes:
+      label: 涉及仓库
+      options:
+        - skill_service（本仓库）
+        - AI-site
+        - agentic_knowledge_system
+        - 多个仓库
+        - 尚未确认
+      default: 0
+    validations:
+      required: true

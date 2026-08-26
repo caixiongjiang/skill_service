@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: AI-site 前端问题
+    url: https://github.com/caixiongjiang/AI-site/issues/new/choose
+    about: 页面展示、路由、前端请求拼装问题请到前端仓库提
+  - name: AKS 知识库后端问题
+    url: https://github.com/caixiongjiang/agentic_knowledge_system/issues/new/choose
+    about: 检索、索引、对话、溯源等知识库后端问题请到 AKS 提
