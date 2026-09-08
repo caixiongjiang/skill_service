@@ -14,7 +14,7 @@ dependencies = [
     "pydantic>=2.12.5",
     "python-multipart>=0.0.22",
     "minio>=7.2.0",
-    "skill-core>=0.2.2",
+    "skill-core>=0.2.3",
 ]
 
 [[tool.uv.index]]
@@ -22,4 +22,4 @@ url = "https://pypi.tuna.tsinghua.edu.cn/simple"
 default = true
 
 [tool.uv.sources]
-skill-core = { path = "third_party/skill_core-0.2.2-py3-none-any.whl" }
+skill-core = { path = "third_party/skill_core-0.2.3-py3-none-any.whl" }

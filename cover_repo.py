@@ -2,8 +2,8 @@
 # -*- coding: UTF-8 -*-
 """技能封面 MySQL 记录（挂在 skill 表上）。
 
-skill-service 当前依赖 skill_core wheel，封面列由本仓库自行补齐，
-不依赖 wheel 是否已包含 cover_* 字段。
+skill-service 读写 skill 封面列。skill_core>=0.2.3 的 MySQLSkillRepository
+已带 cover_* 字段与 get/set/clear_cover；本仓库仍自行补列，避免旧库漏迁移。
 """
 
 from __future__ import annotations

@@ -489,15 +489,15 @@ wheels = [
 
 [[package]]
 name = "skill-core"
-version = "0.2.2"
-source = { path = "third_party/skill_core-0.2.2-py3-none-any.whl" }
+version = "0.2.3"
+source = { path = "third_party/skill_core-0.2.3-py3-none-any.whl" }
 dependencies = [
     { name = "loguru" },
     { name = "pyyaml" },
     { name = "sqlalchemy" },
 ]
 wheels = [
-    { filename = "skill_core-0.2.2-py3-none-any.whl", hash = "sha256:b3d278b97140060d222266fb5013c4aa5d6caeb224beb99bf44f3dcff3257dab" },
+    { filename = "skill_core-0.2.3-py3-none-any.whl", hash = "sha256:42139c6e1f843732e5aae0f81b10158feb15fabbe607c0fd4af515f58ab8c7a5" },
 ]
 
 [package.metadata]
@@ -535,7 +535,7 @@ requires-dist = [
     { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "python-multipart", specifier = ">=0.0.22" },
     { name = "pyyaml", specifier = ">=6.0" },
-    { name = "skill-core", path = "third_party/skill_core-0.2.2-py3-none-any.whl" },
+    { name = "skill-core", path = "third_party/skill_core-0.2.3-py3-none-any.whl" },
     { name = "sqlalchemy", specifier = ">=2.0.0" },
     { name = "uvicorn", specifier = ">=0.41.0" },
 ]
