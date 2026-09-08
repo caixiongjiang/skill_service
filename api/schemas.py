@@ -50,6 +50,10 @@ class SkillDescriptorResponse(BaseModel):
     source: str  # "builtin" | "custom"
     enabled: bool = True
     deletable: bool = False
+    cover_url: Optional[str] = Field(
+        default=None,
+        description="自定义封面相对路径（图片存 MinIO，地址记在 skill.cover_object_key）",
+    )
 
 
 class SkillDetailResponse(BaseModel):

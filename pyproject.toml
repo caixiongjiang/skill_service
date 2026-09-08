@@ -12,6 +12,8 @@ dependencies = [
     "pymysql>=1.1.2",
     "python-dotenv>=1.2.1",
     "pydantic>=2.12.5",
+    "python-multipart>=0.0.22",
+    "minio>=7.2.0",
     "skill-core>=0.2.2",
 ]
 

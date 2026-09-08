@@ -6,7 +6,7 @@ Skill 技能管理服务（独立进程，独占 MySQL，对外暴露 REST API�
 
 ```bash
 cd skill-service
-cp .env.example .env  # 配置 MySQL 连接
+cp .env.example .env  # 配置 MySQL 与 MinIO
 uv run uvicorn main:app --reload --host 0.0.0.0 --port 8001
 ```
 
@@ -21,7 +21,10 @@ uv run uvicorn main:app --reload --host 0.0.0.0 --port 8001
 | `POST /skills` | 创建自定义技能 |
 | `PUT /skills/{name}` | 编辑自定义技能 |
 | `PATCH /skills/{name}/enabled` | 启用/停用 |
-| `DELETE /skills/{name}` | 删除自定义技能 |
+| `DELETE /skills/{name}` | 删除自定义技能（同时删除 MinIO 封面与 MySQL 记录） |
+| `GET /skills/{name}/cover` | 读取封面图片（从 MinIO 回源） |
+| `POST /skills/{name}/cover` | 上传封面（写入 MinIO，地址记入 skill 表） |
+| `DELETE /skills/{name}/cover` | 删除封面（MinIO 对象 + MySQL 封面列） |
 
 ## 环境变量
 
@@ -31,4 +34,9 @@ uv run uvicorn main:app --reload --host 0.0.0.0 --port 8001
 | `MYSQL_PORT` | `3306` | MySQL 端口 |
 | `MYSQL_USER` | `root` | MySQL 用户 |
 | `MYSQL_PASSWORD` | `` | MySQL 密码 |
-| `MYSQL_DATABASE` | `default` | 数据库名 |
+| `MYSQL_DATABASE` | `default` | 数据库名；同时作为封面对象键的租户前缀 |
+| `MINIO_ENDPOINT` | — | MinIO 地址，如 `host:9000` |
+| `MINIO_BUCKET` | — | 封面所在 bucket |
+| `MINIO_ACCESS_KEY` | — | MinIO Access Key |
+| `MINIO_SECRET_KEY` | — | MinIO Secret Key |
+| `MINIO_SECURE` | `false` | 是否 HTTPS |

@@ -219,3 +219,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 __pycache__/
+
+# 旧版本地封面目录（现已改为 MinIO）
+data/covers/

@@ -86,10 +86,20 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
     registry = SkillRegistry(builtin_dir=builtin_dir, repo=repo)
 
+    from cover_repo import SkillCoverRepository
+    from cover_store import CoverStore
+    from minio_store import minio_from_env
     from skill_service import SkillService
 
-    _skill_service = SkillService(registry=registry, repo=repo)
-    logger.info(f"Skill Service 已就绪 (builtin_dir={builtin_dir})")
+    cover_repo = SkillCoverRepository(session_factory=session_factory)
+    cover_repo.ensure_columns()
+    minio = minio_from_env()
+    covers = CoverStore(cover_repo, minio)
+    _skill_service = SkillService(registry=registry, repo=repo, covers=covers)
+    logger.info(
+        f"Skill Service 已就绪 (builtin_dir={builtin_dir}, "
+        f"covers=minio://{minio.bucket}/skill-covers)"
+    )
 
     yield
 

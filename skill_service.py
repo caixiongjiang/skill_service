@@ -24,6 +24,7 @@ from skill_core import (
 from skill_core.adapters.mysql_repo import MySQLSkillRepository
 from skill_core.ports import SkillRepository
 from skill_core.types import CustomSkillRecord
+from cover_store import CoverStore
 
 
 # ---------------------------------------------------------------------------
@@ -82,9 +83,11 @@ class SkillService:
         self,
         registry: SkillRegistry,
         repo: SkillRepository,
+        covers: CoverStore,
     ) -> None:
         self._registry = registry
         self._repo = repo
+        self._covers = covers
 
     # ------------------------------------------------------------------
     # 读
@@ -246,9 +249,33 @@ class SkillService:
             Forbidden: 尝试删除内置技能。
         """
         self._assert_custom(name)
+        self._covers.delete(name, clear_row=False)
         self._repo.delete(name)
         self._registry.invalidate()
         logger.info(f"技能已删除: {name}")
+
+    def cover_url(self, name: str) -> str | None:
+        """返回技能封面的对外相对路径；未上传则 None。"""
+        return self._covers.public_url(name)
+
+    def cover_urls(self) -> dict[str, str]:
+        """批量返回已上传封面的相对路径。"""
+        return self._covers.public_urls()
+
+    def save_cover(self, name: str, data: bytes, content_type: str) -> str:
+        """保存自定义技能封面（MinIO + MySQL）。"""
+        self._assert_custom(name)
+        return self._covers.save(name, data, content_type)
+
+    def get_cover_bytes(self, name: str) -> tuple[bytes, str] | None:
+        """从 MinIO 读取封面字节与 MIME；不存在则 None。"""
+        self._assert_exists(name)
+        return self._covers.get_bytes(name)
+
+    def clear_cover(self, name: str) -> None:
+        """删除自定义技能封面（MinIO 对象 + MySQL 列）。"""
+        self._assert_custom(name)
+        self._covers.delete(name, clear_row=True)
 
     # ------------------------------------------------------------------
     # 内部校验
